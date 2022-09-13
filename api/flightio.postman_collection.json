@@ -1,0 +1,95 @@
+{
+	"info": {
+		"_postman_id": "aec1e960-1b68-4023-aa9b-5e114e128e5d",
+		"name": "flightio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get-flights",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://flightio.com/bff/FlightSearch?id=f25ce38a-e6f0-49e1-b5ef-7d22275d4df9",
+					"protocol": "https",
+					"host": [
+						"flightio",
+						"com"
+					],
+					"path": [
+						"bff",
+						"FlightSearch"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "f25ce38a-e6f0-49e1-b5ef-7d22275d4df9"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-flights-searchId",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"adult\": 1,\r\n   \"child\": 0,\r\n   \"depart\": \"2022-10-09\",\r\n   \"dest\": \"MHD\",\r\n   \"source\": \"THR\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://flightio.com/bff/FlightSearch",
+					"protocol": "https",
+					"host": [
+						"flightio",
+						"com"
+					],
+					"path": [
+						"bff",
+						"FlightSearch"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-cities",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://flightio.com/bff/city/?query=&cache=wb",
+					"protocol": "https",
+					"host": [
+						"flightio",
+						"com"
+					],
+					"path": [
+						"bff",
+						"city",
+						""
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": ""
+						},
+						{
+							"key": "cache",
+							"value": "wb"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
