@@ -1,0 +1,26 @@
+@font-face {
+	font-family: IRANSansX;
+	font-style: normal;
+	font-display: swap;
+	font-weight: 300; // regular
+	src: url('/fonts/iransansx-pro/IRANSansXFaNum-Regular.woff') format('woff'),
+		url('/fonts/iransansx-pro/IRANSansXFaNum-Regular.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: IRANSansX;
+	font-style: normal;
+	font-display: swap;
+	font-weight: 500; // medium
+	src: url('/fonts/iransansx-pro/IRANSansXFaNum-Medium.woff') format('woff'),
+		url('/fonts/iransansx-pro/IRANSansXFaNum-Medium.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: IRANSansX;
+	font-style: normal;
+	font-display: swap;
+	font-weight: 700; // bold
+	src: url('/fonts/iransansx-pro/IRANSansXFaNum-Bold.woff') format('woff'),
+		url('/fonts/iransansx-pro/IRANSansXFaNum-Bold.woff2') format('woff2');
+}

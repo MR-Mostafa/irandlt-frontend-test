@@ -1,0 +1,29 @@
+p {
+	margin: 0;
+	padding: 0;
+}
+
+html,
+body {
+	overflow-x: hidden !important;
+	overflow-y: auto !important;
+}
+
+a,
+a::after,
+a::before,
+button::after,
+button::before,
+a svg,
+button svg {
+	transition: all 0.15s ease-in-out;
+}
+
+a,
+button {
+	&:not(:disabled) {
+		&:active {
+			filter: invert(0.1);
+		}
+	}
+}

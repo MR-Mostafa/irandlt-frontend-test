@@ -1,3 +1,9 @@
 {
-  "extends": "next/core-web-vitals"
+	"plugins": ["github"],
+	"extends": ["plugin:listeners/recommended", "next/core-web-vitals", "prettier"],
+	"rules": {
+		"security/detect-object-injection": "off",
+		"listeners/no-missing-remove-event-listener": "off",
+		"react-hooks/exhaustive-deps": "off"
+	}
 }
