@@ -8,8 +8,7 @@ const GlobalStyles = () => {
 					fontSize: 'var(--root-font-size)',
 				},
 				'body': {
-					minWidth: '100%',
-					width: '100vw',
+					width: '100%',
 					minHeight: '100vh',
 					margin: 0,
 					padding: 0,
