@@ -14,7 +14,7 @@ const themeOptions: MantineThemeOverride = {
 			h1: { fontSize: 30 },
 		},
 	},
-	defaultRadius: 'sm',
+	defaultRadius: 'xs',
 	transitionTimingFunction: 'ease-in-out',
 	lineHeight: 1.9,
 	breakpoints: {

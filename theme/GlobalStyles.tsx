@@ -7,7 +7,7 @@ const GlobalStyles = () => {
 				':root': {
 					fontSize: 'var(--root-font-size)',
 				},
-				body: {
+				'body': {
 					minWidth: '100%',
 					width: '100vw',
 					minHeight: '100vh',
@@ -28,11 +28,15 @@ const GlobalStyles = () => {
 				},
 
 				'.mantine-Button-root': {
-					fontWeight: 'normal',
+					'fontWeight': 'normal',
 
 					'&:focus, &:active': {
 						transform: 'none !important',
 					},
+				},
+
+				'.mantine-List-root': {
+					fontSize: '1rem',
 				},
 
 				'.mantine-List-itemWrapper': {
