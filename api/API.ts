@@ -1,17 +1,23 @@
 import axios from 'axios';
 
-const API = axios.create({
-	baseURL: 'https://flightio.com/',
-	timeout: 10000, // 10s
+const timeout = 10000; // 10s
+const contentType = 'application/json';
+const responseType = 'json';
+
+export const API_Back = axios.create({
+	baseURL: process.env.API,
+	timeout,
 	headers: {
-		'content-type': 'application/json',
+		'content-type': contentType,
 	},
-	responseType: 'json',
+	responseType,
 });
 
-export const getFetcher = (url: string) => API.get(url).then((res) => res);
-
-export const postFetcher = (url: string, data: object = {}) =>
-	API.post(url, data).then((res) => res);
-
-export default API;
+export const API_Front = axios.create({
+	baseURL: process.env.NEXT_PUBLIC_API,
+	timeout,
+	headers: {
+		'content-type': contentType,
+	},
+	responseType,
+});
