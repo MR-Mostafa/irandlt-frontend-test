@@ -13,15 +13,19 @@ type ResponseData = Data | Error;
 const cityList = async (req: NextApiRequest, res: NextApiResponse<ResponseData>) => {
 	if (req.method !== 'GET') return res.status(405).json({});
 
-	return await API_Back.get<any, AxiosResponse<cityType[], any>>('/city/?query=&cache=wb')
-		.then((data) => {
-			return res.status(data.status).json(data.data);
-		})
-		.catch((err) => {
-			const { message, name, code } = err;
+	try {
+		return await API_Back.get<any, AxiosResponse<cityType[], any>>('/city/?query=&cache=wb')
+			.then((data) => {
+				return res.status(data.status).json(data.data);
+			})
+			.catch((err) => {
+				const { message, name, code } = err;
 
-			return res.status(500).json({ message, name, code });
-		});
+				return res.status(500).json({ message, name, code });
+			});
+	} catch (err) {
+		return res.status(500).json({ message: 'خطایی رخ داده است' });
+	}
 };
 
 export default cityList;
