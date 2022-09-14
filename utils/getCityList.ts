@@ -32,9 +32,12 @@ export const getCityList = (() => {
 
 			return cache;
 		} catch (error) {
-			return {
-				status: 'error',
-			};
+			cache.data = undefined;
+			cache.expireDate = undefined;
+			cache.type = undefined;
+			cache.status = 'error';
+
+			return cache;
 		}
 	};
 })();
