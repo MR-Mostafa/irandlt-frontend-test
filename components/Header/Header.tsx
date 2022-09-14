@@ -15,7 +15,7 @@ const Header = () => {
 						const { text, href } = item;
 
 						return (
-							<Link href={href} key={index} prefetch passHref>
+							<Link href={href} key={index} passHref>
 								<Button
 									component="a"
 									variant="subtle"
