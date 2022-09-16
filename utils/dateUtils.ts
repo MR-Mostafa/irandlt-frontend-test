@@ -1,3 +1,9 @@
+import type { DateType } from 'react-date-object';
+import gregorian from 'react-date-object/calendars/gregorian';
+import persian from 'react-date-object/calendars/persian';
+import gregorianLocal from 'react-date-object/locales/gregorian_en';
+import { DateObject } from 'react-multi-date-picker';
+
 import { _DayInMs } from '~root/constants/globalConstants';
 
 /**
@@ -29,3 +35,11 @@ export function setExpireDate(expireTime: number = _DayInMs): string {
 
 	return expireDate.toISOString();
 }
+
+/**
+ * @description
+ * تبدیل تاریخ شمسی به میلادی
+ */
+export const toGregorianDate = (date: DateType): DateObject => {
+	return new DateObject({ calendar: persian, date }).convert(gregorian, gregorianLocal);
+};
