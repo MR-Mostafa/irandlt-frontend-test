@@ -1,12 +1,17 @@
 import { AxiosResponse } from 'axios';
 
-import { API_Front } from '~root/api/API';
+import { API } from '~root/api/API';
 import { _DayInMs } from '~root/constants/globalConstants';
 import { ICityListType, ICityType } from '~root/types/cityType';
 import { dateCompare, setExpireDate } from '~root/utils/dateUtils';
 
 export const getCityList = (() => {
-	const cache: ICityListType = {};
+	const cache: ICityListType = {
+		data: null,
+		expireDate: null,
+		status: null,
+		type: null,
+	};
 
 	return async () => {
 		const now = Date.now();
@@ -18,7 +23,7 @@ export const getCityList = (() => {
 		}
 
 		try {
-			const data = await API_Front.get<any, AxiosResponse<ICityType[], any>>('/cityList');
+			const data = await API.get<any, AxiosResponse<ICityType[], any>>('/city/?query=&cache=wb');
 
 			if (data && data.status && data.status.toString().startsWith('2')) {
 				cache.data = data.data;
@@ -26,14 +31,17 @@ export const getCityList = (() => {
 				cache.type = 'fetched';
 				cache.status = 'successful';
 			} else {
+				cache.data = null;
+				cache.expireDate = null;
+				cache.type = null;
 				cache.status = 'error';
 			}
 
 			return cache;
 		} catch (error) {
-			cache.data = undefined;
-			cache.expireDate = undefined;
-			cache.type = undefined;
+			cache.data = null;
+			cache.expireDate = null;
+			cache.type = null;
 			cache.status = 'error';
 
 			return cache;

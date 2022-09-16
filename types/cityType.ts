@@ -6,8 +6,8 @@ export interface ICityType {
 }
 
 export interface ICityListType {
-	data?: ICityType[];
-	type?: 'fetched' | 'cached';
-	status?: 'successful' | 'error';
-	expireDate?: string;
+	data: ICityType[] | null;
+	type: 'fetched' | 'cached' | null;
+	status: 'successful' | 'error' | null;
+	expireDate: string | null;
 }

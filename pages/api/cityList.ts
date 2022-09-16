@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { AxiosResponse } from 'axios';
 
-import { API_Back } from '~root/api/API';
+import { API } from '~root/api/API';
 import { ICityType } from '~root/types/cityType';
 
 type Data = ICityType[];
@@ -14,7 +14,7 @@ const cityList = async (req: NextApiRequest, res: NextApiResponse<ResponseData>)
 	if (req.method !== 'GET') return res.status(405).json({});
 
 	try {
-		return await API_Back.get<any, AxiosResponse<ICityType[], any>>('/city/?query=&cache=wb')
+		return await API.get<any, AxiosResponse<ICityType[], any>>('/city/?query=&cache=wb')
 			.then((data) => {
 				return res.status(data.status).json(data.data);
 			})
