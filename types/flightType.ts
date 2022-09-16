@@ -1,4 +1,4 @@
-import { cityType } from '~root/types/cityType';
+import { ICityType } from '~root/types/cityType';
 
 /**
  * @description
@@ -14,6 +14,6 @@ export interface IFlightDropdown {
  * تایپ اطلاعات جستجوشده در فیلد جستجو
  */
 export interface IFlight {
-	source?: cityType;
-	destination?: cityType;
+	source?: ICityType;
+	destination?: ICityType;
 }
