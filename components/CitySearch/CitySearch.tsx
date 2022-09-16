@@ -7,7 +7,7 @@ import { ICityType } from '~root/types/cityType';
 import ItemComponent from './itemComponent';
 
 type IProps = {
-	cities?: ICityType[];
+	cities: ICityType[] | null;
 	status?: 'successful' | 'error';
 	placeholder: 'مبداء' | 'مقصد';
 	defaultValue?: string;
