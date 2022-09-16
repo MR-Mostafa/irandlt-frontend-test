@@ -11,3 +11,16 @@ export interface ICityListType {
 	status: 'successful' | 'error' | null;
 	expireDate: string | null;
 }
+
+export interface ISearchId {
+	searchId: string;
+	wasValid: boolean;
+	expire: number;
+	firstDelay: number;
+	sourceLabel: string;
+	destinationLabel: string;
+	flightType: number;
+	error: unknown;
+	tripLabels: unknown;
+	getTimeLimitMs: number;
+}
