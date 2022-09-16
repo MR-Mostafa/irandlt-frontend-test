@@ -1,24 +1,39 @@
-import { useEffect, useRef, useState } from 'react';
+import { ReactNode, useEffect, useRef, useState } from 'react';
 
-import { Autocomplete, Text } from '@mantine/core';
+import { Autocomplete, CSSObject, Text } from '@mantine/core';
 
-import { cityType } from '~root/types/cityType';
+import { ICityType } from '~root/types/cityType';
 
 import ItemComponent from './itemComponent';
 
 type IProps = {
-	cities?: cityType[];
+	cities?: ICityType[];
 	status?: 'successful' | 'error';
 	placeholder: 'مبداء' | 'مقصد';
 	defaultValue?: string;
+	inputStyles?: CSSObject;
+	icon: ReactNode;
 	onCheckIsValueEqual: () => boolean;
 	onDropdownOpen: (elem: HTMLInputElement) => void;
-	onItemSubmit: (city: cityType) => void;
+	onItemSubmit: (city: ICityType) => void;
 	onSetDropdownState: (ref: HTMLInputElement) => void;
+	onOpenNextDropdown: () => void;
 };
 
 const CitySearch = (props: IProps) => {
-	const { cities, status, placeholder, defaultValue, onCheckIsValueEqual, onDropdownOpen, onItemSubmit, onSetDropdownState } = props;
+	const {
+		cities,
+		status,
+		placeholder,
+		defaultValue,
+		inputStyles,
+		icon,
+		onCheckIsValueEqual,
+		onDropdownOpen,
+		onItemSubmit,
+		onSetDropdownState,
+		onOpenNextDropdown,
+	} = props;
 
 	const [value, setValue] = useState<string>(defaultValue || '');
 	const [hasError, setHasError] = useState<boolean>(false);
@@ -30,20 +45,33 @@ const CitySearch = (props: IProps) => {
 		}
 	}, [ref]);
 
+	useEffect(() => {
+		if (!value.trim() || hasError) return;
+
+		if (onCheckIsValueEqual()) {
+			setHasError(true);
+			setValue('');
+			return;
+		}
+
+		onOpenNextDropdown();
+	}, [value, hasError]);
+
 	return (
 		<Autocomplete
 			data={!cities || status === 'error' ? [{ status: 'error', value: 'error' }] : cities}
 			itemComponent={ItemComponent}
 			ref={ref}
-			placeholder={placeholder}
+			placeholder={`شهر ${placeholder} را وارد کنید`}
 			required
+			icon={icon}
 			value={value}
 			onChange={(val: string) => {
 				if (!cities || status === 'error') return;
 
 				setValue(val);
 			}}
-			onItemSubmit={(city: cityType) => {
+			onItemSubmit={(city: ICityType) => {
 				setValue(city.label);
 				onItemSubmit(city);
 			}}
@@ -53,17 +81,11 @@ const CitySearch = (props: IProps) => {
 				}
 			}}
 			onDropdownClose={() => {
-				if (onCheckIsValueEqual()) {
-					setHasError(true);
-					setValue('');
-					return;
-				}
-
 				if (hasError) {
 					setHasError(false);
 				}
 			}}
-			error={hasError ? <p>مبدا و مقصد نمی‌تواند تکراری باشد</p> : false}
+			error={hasError ? <p>شهر مبداء و مقصد نمی‌تواند تکراری باشد.</p> : false}
 			nothingFound={
 				<Text size="sm" align="center" className="pe-none user-select-none">
 					نتیجه‌ای یافت نشد.
@@ -86,6 +108,32 @@ const CitySearch = (props: IProps) => {
 			transition="pop-top-left"
 			transitionDuration={80}
 			transitionTimingFunction="ease"
+			label={`شهر ${placeholder}`}
+			size="md"
+			styles={{
+				root: {
+					position: 'static',
+				},
+				label: {
+					paddingBottom: 5,
+				},
+				input: {
+					height: 48,
+					border: 'none',
+					boxShadow: '0px 14px 18px -9px rgba(17, 42, 131, 0.1)',
+					borderRadius: 0,
+					...inputStyles,
+				},
+				icon: {
+					opacity: '0.4',
+				},
+				error: {
+					position: 'absolute',
+					top: 'auto',
+					bottom: '-1.5rem',
+					left: '0',
+				},
+			}}
 		/>
 	);
 };
