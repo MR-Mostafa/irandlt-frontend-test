@@ -2,12 +2,12 @@ import { AxiosResponse } from 'axios';
 
 import { API_Front } from '~root/api/API';
 import { _DayInMs } from '~root/constants/globalConstants';
-import { cityListType, cityType } from '~root/types/cityType';
+import { ICityListType, ICityType } from '~root/types/cityType';
 
 import { dateCompare, setExpireDate } from './dateUtils';
 
 export const getCityList = (() => {
-	const cache: cityListType = {};
+	const cache: ICityListType = {};
 
 	return async () => {
 		const now = Date.now();
@@ -19,7 +19,7 @@ export const getCityList = (() => {
 		}
 
 		try {
-			const data = await API_Front.get<any, AxiosResponse<cityType[], any>>('/cityList');
+			const data = await API_Front.get<any, AxiosResponse<ICityType[], any>>('/cityList');
 
 			if (data && data.status && data.status.toString().startsWith('2')) {
 				cache.data = data.data;
