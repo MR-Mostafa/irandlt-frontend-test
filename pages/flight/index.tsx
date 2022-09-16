@@ -6,13 +6,13 @@ import { useRecoilState } from 'recoil';
 
 import { Box, Button, Grid } from '@mantine/core';
 
+import { getCityList } from '~root/api/getCityList';
 import CitySearch from '~root/components/CitySearch/CitySearch';
 import DateRangePicker from '~root/components/DateRangePicker/DateRangePicker';
 import { _CachedResponse, _CachedRevalidate } from '~root/constants/globalConstants';
 import { flightDropdownStore, flightStore } from '~root/store/flightState';
 import { ICityListType } from '~root/types/cityType';
 import { toGregorianDate } from '~root/utils/dateUtils';
-import { getCityList } from '~root/utils/getCityList';
 
 const Flight = ({ cityList }: { cityList: ICityListType }) => {
 	const router = useRouter();

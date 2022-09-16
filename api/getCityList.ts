@@ -3,8 +3,7 @@ import { AxiosResponse } from 'axios';
 import { API_Front } from '~root/api/API';
 import { _DayInMs } from '~root/constants/globalConstants';
 import { ICityListType, ICityType } from '~root/types/cityType';
-
-import { dateCompare, setExpireDate } from './dateUtils';
+import { dateCompare, setExpireDate } from '~root/utils/dateUtils';
 
 export const getCityList = (() => {
 	const cache: ICityListType = {};
